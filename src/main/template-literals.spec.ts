@@ -10,7 +10,7 @@ describe('Template literals', () => {
       friends: ['Greg', 'Sebastian', 'Chloe']
     }
     // construct an arrow function using template literal string interpolation
-    const friendsStr = person => ``
+    const friendsStr = person => person.name + " has " + person.friends.length + " friends: " + person.friends;
 
     expect(friendsStr(personPL)).toBe(
       'Jarosław has 4 friends: Antoni, Andrzej, Krystyna, Wiktor'

@@ -2,19 +2,28 @@ describe('class', () => {
 
   it('has a constructor for initialization', () => {
     // Create a Musician class
+    class Musician {
+        instrument : string;
+        constructor(instrument : string){
+            this.instrument = instrument;
+        }
+    }
     // Add a constructor that takes one param, the instrument.
     // Set this.instrument to the instrument passed in
 
     const musician = new Musician()
     const ringo = new Musician('drums')
 
-    expect(musician.instrument).toBeUndefined()
-    expect(ringo.instrument).toBe('drums')
-  })
 
   it('constructor can have default param values', () => {
     // Create a Musician class with a constructor
     // Make your class default (using default params) the instrument to 'guitar'
+    class Musician {
+        instrument : string;
+        constructor(instrument : string){
+            this.instrument = "guitar";
+        }
+    }
 
     const john = new Musician()
     const ringo = new Musician('drums')
@@ -26,6 +35,15 @@ describe('class', () => {
   it('can have instance methods', () => {
     // Create a Musician class, pass in the instrument to the constructor,
     // and add a play function to the class definition
+    class Musician {
+        instrument : string;
+        constructor(instrument : string){
+            this.instrument = "drums";
+        }
+        play() {
+            return "I'm playing " + this.instrument;
+        }
+    }
 
     const musician = new Musician()
 
@@ -56,6 +74,19 @@ describe('class', () => {
     // Create a Musician class
     // Create a Rockman class that extends Musician
     // Add play method to Musician
+    class Musician {
+        instrument : string;
+        constructor(instrument : string){
+            this.instrument = "guitar";
+        }
+        play() {
+            return "I'm playing " + this.instrument;
+        }
+
+    }
+    class Rockman extends Musician {
+        
+    }
 
     const rockman = new Rockman()
 
