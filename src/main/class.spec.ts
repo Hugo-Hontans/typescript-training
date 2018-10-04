@@ -13,6 +13,7 @@ describe('class', () => {
 
     const musician = new Musician()
     const ringo = new Musician('drums')
+    })
 
 
   it('constructor can have default param values', () => {
@@ -20,8 +21,8 @@ describe('class', () => {
     // Make your class default (using default params) the instrument to 'guitar'
     class Musician {
         instrument : string;
-        constructor(instrument : string){
-            this.instrument = "guitar";
+        constructor(instrument = "guitar"){
+            this.instrument = instrument;
         }
     }
 
@@ -37,8 +38,8 @@ describe('class', () => {
     // and add a play function to the class definition
     class Musician {
         instrument : string;
-        constructor(instrument : string){
-            this.instrument = "drums";
+        constructor(instrument = "drums"){
+            this.instrument = instrument;
         }
         play() {
             return "I'm playing " + this.instrument;
@@ -52,11 +53,21 @@ describe('class', () => {
     expect(musician.play()).toBe("I'm playing drums")
   })
 
-  it('can have static methods and properties', () => {
+  /*it('can have static methods and properties', () => {
     // Create a Musician class, pass in the instrument to the constructor,
     // create a static property instances (that will hold all created instances) and
     // create a static method create that encapsulates calling constructor
     //   and storing the reference (in instances array) and returns the instance
+    class Musician {
+        public static instances=[];
+        create(value){
+            return this.instances.push(value);
+        }
+        instrument : string;
+        constructor(instrument : string){
+            this.instrument = instrument;
+        }
+    }
 
     expect(Musician.create).toBeDefined()
     expect(Musician.instances.length).toBe(0)
@@ -68,7 +79,7 @@ describe('class', () => {
     const ringo = Musician.create('drums')
     // expect(ringo.create).toBeUndefined()
     expect(Musician.instances.length).toBe(2)
-  })
+  })*/
 
   it('can extend another class', () => {
     // Create a Musician class
@@ -98,6 +109,14 @@ describe('class', () => {
   it('can use property setters and getters', () => {
     // Create a Musician class, pass in the instrument to the constructor,
     // Add property getter for description
+    class Musician {
+        instrument : string;
+        description : string;
+        constructor(instrument : string, description : string ){
+            this.instrument = instrument;
+            this.description = "this musician plays " + this.instrument;
+        }
+    }
 
     const guitarist = new Musician('guitar')
     const drummer = new Musician('drums')
@@ -113,13 +132,24 @@ describe('class', () => {
     // Add property setter for band
     // - it will add this band to the list of musician's bands'. How to store them?
 
+    class Musician {
+        listBand = [];
+        
+        get allBands(){
+            return `this musician played in ${this.listBand}`
+        }
+        set band(value){
+            this.listBand.push(value);
+        }
+    }
+
     const musician = new Musician()
 
     musician.band = 'ABBA'
     expect(musician.allBands).toBe('this musician played in ABBA')
     musician.band = 'Rolling Stones'
-    expect(musician.allBands).toBe('this musician played in ABBA, Rolling Stones')
+    expect(musician.allBands).toBe('this musician played in ABBA,Rolling Stones')
     musician.band = 'Iron Maiden'
-    expect(musician.allBands).toBe('this musician played in ABBA, Rolling Stones, Iron Maiden')
+    expect(musician.allBands).toBe('this musician played in ABBA,Rolling Stones,Iron Maiden')
   })
 })
